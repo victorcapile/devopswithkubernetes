@@ -1,6 +1,6 @@
 # KubernetesSubmissions
 
-Exercises for the DevOps with Kubernetes course.
+Exercises for the Kubernetes course.
 
 ## Exercises
 
