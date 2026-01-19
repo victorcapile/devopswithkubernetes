@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: todo-app-dep
+  name: todo-app
 spec:
   replicas: 1
   selector:
@@ -14,7 +14,6 @@ spec:
     spec:
       containers:
       - name: todo-app
-        image: vcapile/todo-app:v1
-        env:
-        - name: PORT
-          value: "3000"
+        image: vcapile/todo-app:1.5 
+        ports:
+        - containerPort: 3000

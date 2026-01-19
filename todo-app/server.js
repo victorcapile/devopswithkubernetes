@@ -1,12 +1,25 @@
-const http = require('http');
+const express = require('express');
+const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-const server = http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Hello from todo app!\n');
+// Rota principal que retorna HTML
+app.get('/', (req, res) => {
+  res.send(`
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>Todo App</title>
+      </head>
+      <body>
+        <h1>Todo App - Running on Kubernetes! 🚀</h1>
+        <p>This is my DevOps with Kubernetes project</p>
+        <p>Exercise 1.5 completed!</p>
+      </body>
+    </html>
+  `);
 });
 
-server.listen(PORT, () => {
-  console.log(`Server started in port ${PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
