@@ -11,4 +11,4 @@ Exercises for the Kubernetes course.
 - [1.3](https://github.com/victorcapile/devopswithkubernetes/tree/1.3) - Declarative approach
 - [1.4](https://github.com/victorcapile/devopswithkubernetes/tree/1.4) - Project deployment
 - [1.5](https://github.com/victorcapile/devopswithkubernetes/tree/1.5) - HTML Response
-- [1.5](https://github.com/victorcapile/devopswithkubernetes/tree/1.6) - Service
+- [1.6](https://github.com/victorcapile/devopswithkubernetes/tree/1.6) - Service
