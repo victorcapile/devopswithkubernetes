@@ -1,19 +1,26 @@
-const { v4: uuidv4 } = require('uuid');
+const http = require('http');
 
-const randomString = uuidv4();
+// Gera string aleatória no startup
+const randomString = Math.random().toString(36).substring(7);
 
-console.log('Application started. Random string:', randomString);
+const server = http.createServer((req, res) => {
+  // Responde tanto em / quanto em /log-output
+  if (req.url === '/status' || req.url === '/' || req.url === '/log-output') {
+    const timestamp = new Date().toISOString();
+    const status = `${timestamp}: ${randomString}`;
+    
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end(status);
+    
+    console.log(status);
+  } else {
+    res.writeHead(404);
+    res.end('Not Found');
+  }
+});
 
-const printLog = () => {
-  const timestamp = new Date().toISOString();
-  console.log(`${timestamp}: ${randomString}`);
-};
-
-printLog();
-
-setInterval(printLog, 5000);
-
-process.on('SIGTERM', () => {
-  console.log('Received SIGTERM, shutting down gracefully');
-  process.exit(0);
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+  console.log(`Random string generated: ${randomString}`);
 });
