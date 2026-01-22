@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
       <body>
         <h1>Todo App - Running on Kubernetes! 🚀</h1>
         <p>This is my DevOps with Kubernetes project</p>
-        <p>Exercise 1.5 completed!</p>
+        <p>Exercise 1.8 completed!</p>
       </body>
     </html>
   `);
