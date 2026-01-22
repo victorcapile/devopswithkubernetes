@@ -13,3 +13,5 @@ Exercises for the Kubernetes course.
 - [1.5](https://github.com/victorcapile/devopswithkubernetes/tree/1.5) - HTML Response
 - [1.6](https://github.com/victorcapile/devopswithkubernetes/tree/1.6) - Service
 - [1.7](https://github.com/victorcapile/devopswithkubernetes/tree/1.7) - External access with Ingress
+- [1.8](https://github.com/victorcapile/devopswithkubernetes/tree/1.8) - Ingress instead of NodePort
+
