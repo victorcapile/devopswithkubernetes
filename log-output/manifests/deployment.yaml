@@ -12,8 +12,21 @@ spec:
       labels:
         app: log-output
     spec:
+      volumes:
+      - name: shared-log
+        emptyDir: {}  # volume temporário compartilhado
+      
       containers:
-      - name: log-output
-        image: vcapile/log-output:1.7.1 
+      - name: writer
+        image: vcapile/log-output-writer:1.10
+        volumeMounts:
+        - name: shared-log
+          mountPath: /usr/src/app/files
+      
+      - name: reader
+        image: vcapile/log-output-reader:1.10
         ports:
         - containerPort: 3000
+        volumeMounts:
+        - name: shared-log
+          mountPath: /usr/src/app/files

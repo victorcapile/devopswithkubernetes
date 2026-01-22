@@ -1,18 +1,20 @@
 const http = require('http');
+const fs = require('fs');
 
-// Gera string aleatória no startup
-const randomString = Math.random().toString(36).substring(7);
+const filePath = '/usr/src/app/files/log.txt';
 
 const server = http.createServer((req, res) => {
-  // Responde tanto em / quanto em /log-output
-  if (req.url === '/status' || req.url === '/' || req.url === '/log-output') {
-    const timestamp = new Date().toISOString();
-    const status = `${timestamp}: ${randomString}`;
-    
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end(status);
-    
-    console.log(status);
+  if (req.url === '/' || req.url === '/status') {
+    try {
+      const content = fs.readFileSync(filePath, 'utf8');
+      res.writeHead(200, { 'Content-Type': 'text/plain' });
+      res.end(content);
+      console.log('Served log content');
+    } catch (err) {
+      res.writeHead(500, { 'Content-Type': 'text/plain' });
+      res.end('Error reading log file');
+      console.error('Error:', err);
+    }
   } else {
     res.writeHead(404);
     res.end('Not Found');
@@ -21,6 +23,5 @@ const server = http.createServer((req, res) => {
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-  console.log(`Random string generated: ${randomString}`);
+  console.log(`Reader server running on port ${PORT}`);
 });
