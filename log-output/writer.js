@@ -1,12 +1,12 @@
 const fs = require('fs');
 
-// Gera string aleatória no startup
+// gera string aleatória ao iniciar
 const randomString = Math.random().toString(36).substring(7);
 const filePath = '/usr/src/app/files/log.txt';
 
 console.log(`Writer started with random string: ${randomString}`);
 
-// Escreve no arquivo a cada 5 segundos
+// escreve no arquivo a cada 5s
 setInterval(() => {
   const timestamp = new Date().toISOString();
   const logLine = `${timestamp}: ${randomString}\n`;

@@ -5,9 +5,10 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - http:
+  - host: log-output.local  
+    http:
       paths:
-      - path: /log-output
+      - path: /
         pathType: Prefix
         backend:
           service:
