@@ -82,9 +82,18 @@ app.get('/image', async (req, res) => {
   }
 });
 
+// Todos hardcoded
+const todos = [
+  'Learn JavaScript',
+  'Learn React',
+  'Build a project'
+];
+
 // Rota principal
 app.get('/', async (req, res) => {
   await ensureImage();
+
+  const todoList = todos.map(todo => `<li>${todo}</li>`).join('\n        ');
 
   res.send(`
     <!DOCTYPE html>
@@ -94,11 +103,23 @@ app.get('/', async (req, res) => {
         <style>
           body { font-family: Arial, sans-serif; margin: 20px; }
           img { max-width: 600px; display: block; margin: 20px 0; }
+          form { margin: 20px 0; }
+          input[type="text"] { padding: 5px; width: 250px; }
+          button { padding: 5px 15px; margin-left: 10px; }
+          ul { list-style-type: disc; padding-left: 20px; }
+          li { margin: 5px 0; }
         </style>
       </head>
       <body>
         <h1>The project App</h1>
         <img src="/image" alt="Random image" />
+        <form>
+          <input type="text" maxlength="140" placeholder="Enter todo (max 140 chars)" />
+          <button type="submit">Create todo</button>
+        </form>
+        <ul>
+        ${todoList}
+        </ul>
         <p>DevOps with Kubernetes 2025</p>
       </body>
     </html>
