@@ -12,8 +12,16 @@ spec:
       labels:
         app: todo-app
     spec:
+      volumes:
+      - name: todo-files
+        persistentVolumeClaim:
+          claimName: todo-app-pvc
       containers:
       - name: todo-app
-        image: vcapile/todo-app:1.8
+        image: vcapile/todo-app:1.12
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
+        volumeMounts:
+        - name: todo-files
+          mountPath: /usr/src/app/files
